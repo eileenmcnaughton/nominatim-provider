@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of the Geocoder package.
  * For the full copyright and license information, please view the LICENSE
@@ -29,7 +27,7 @@ use Http\Client\HttpClient;
  * @author Niklas Närhinen <niklas@narhinen.net>
  * @author Jonathan Beliën <jbe@geo6.be>
  */
-final class Nominatim extends AbstractHttpProvider implements Provider
+class Nominatim extends AbstractHttpProvider implements Provider
 {
     /**
      * @var string
@@ -61,7 +59,7 @@ final class Nominatim extends AbstractHttpProvider implements Provider
     /**
      * {@inheritdoc}
      */
-    public function geocodeQuery(GeocodeQuery $query): Collection
+    public function geocodeQuery(GeocodeQuery $query)
     {
         $address = $query->getText();
         // This API does not support IPv6
@@ -100,7 +98,7 @@ final class Nominatim extends AbstractHttpProvider implements Provider
     /**
      * {@inheritdoc}
      */
-    public function reverseQuery(ReverseQuery $query): Collection
+    public function reverseQuery(ReverseQuery $query)
     {
         $coordinates = $query->getCoordinates();
         $longitude = $coordinates->getLongitude();
@@ -127,7 +125,7 @@ final class Nominatim extends AbstractHttpProvider implements Provider
      *
      * @return Location
      */
-    private function xmlResultToArray(\DOMElement $resultNode, \DOMElement $addressNode, string $attribution, bool $reverse): Location
+    private function xmlResultToArray(\DOMElement $resultNode, \DOMElement $addressNode, $attribution, $reverse)
     {
         $builder = new AddressBuilder($this->getName());
 
@@ -193,7 +191,7 @@ final class Nominatim extends AbstractHttpProvider implements Provider
     /**
      * {@inheritdoc}
      */
-    public function getName(): string
+    public function getName()
     {
         return 'nominatim';
     }
@@ -204,7 +202,7 @@ final class Nominatim extends AbstractHttpProvider implements Provider
      *
      * @return string
      */
-    private function executeQuery(string $url, string $locale = null): string
+    private function executeQuery($url, $locale = null)
     {
         if (null !== $locale) {
             $url = sprintf('%s&accept-language=%s', $url, $locale);
@@ -213,12 +211,12 @@ final class Nominatim extends AbstractHttpProvider implements Provider
         return $this->getUrlContents($url);
     }
 
-    private function getGeocodeEndpointUrl(): string
+    private function getGeocodeEndpointUrl()
     {
         return $this->rootUrl.'/search?q=%s&format=xml&addressdetails=1&limit=%d';
     }
 
-    private function getReverseEndpointUrl(): string
+    private function getReverseEndpointUrl()
     {
         return $this->rootUrl.'/reverse?format=xml&lat=%F&lon=%F&addressdetails=1&zoom=%d';
     }

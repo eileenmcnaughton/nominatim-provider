@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of the Geocoder package.
  * For the full copyright and license information, please view the LICENSE
@@ -62,7 +60,7 @@ final class NominatimAddress extends Address
      *
      * @return NominatimAddress
      */
-    public function withAttribution(string $attribution = null): self
+    public function withAttribution($attribution = null)
     {
         $new = clone $this;
         $new->attribution = $attribution;
@@ -83,7 +81,7 @@ final class NominatimAddress extends Address
      *
      * @return NominatimAddress
      */
-    public function withClass(string $class = null): self
+    public function withClass($class = null)
     {
         $new = clone $this;
         $new->class = $class;
@@ -104,7 +102,7 @@ final class NominatimAddress extends Address
      *
      * @return NominatimAddress
      */
-    public function withDisplayName(string $displayName = null): self
+    public function withDisplayName($displayName = null)
     {
         $new = clone $this;
         $new->displayName = $displayName;
@@ -125,7 +123,7 @@ final class NominatimAddress extends Address
      *
      * @return NominatimAddress
      */
-    public function withOSMId(int $osmId = null): self
+    public function withOSMId($osmId = null)
     {
         $new = clone $this;
         $new->osmId = $osmId;
@@ -146,7 +144,7 @@ final class NominatimAddress extends Address
      *
      * @return NominatimAddress
      */
-    public function withOSMType(string $osmType = null): self
+    public function withOSMType($osmType = null)
     {
         $new = clone $this;
         $new->osmType = $osmType;
@@ -167,7 +165,7 @@ final class NominatimAddress extends Address
      *
      * @return NominatimAddress
      */
-    public function withType(string $type = null): self
+    public function withType($type = null)
     {
         $new = clone $this;
         $new->type = $type;
